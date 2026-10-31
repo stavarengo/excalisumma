@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main]
   pull_request:
-    branches: [main, dev]
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -213,11 +213,7 @@ jobs:
           image_tag="ci-${short_sha}"
           platforms="linux/amd64"
 
-          if [ "$GITHUB_EVENT_NAME" = push ] && [ "$GITHUB_REF" = refs/heads/dev ]; then
-            publish=true
-            image_tag="${version}-dev.${short_sha}"
-            platforms="linux/amd64,linux/arm64"
-          elif [ "$GITHUB_EVENT_NAME" = push ] && [ "$GITHUB_REF" = refs/heads/main ]; then
+          if [ "$GITHUB_EVENT_NAME" = push ] && [ "$GITHUB_REF" = refs/heads/main ]; then
             publish=true
             stable=true
             image_tag="${version}"
@@ -356,7 +352,7 @@ jobs:
       - name: Promote verified image pair
         if: needs.release-metadata.outputs.publish == 'true'
         env:
-          FLOATING_TAG: ${{ needs.release-metadata.outputs.stable == 'true' && 'latest' || 'dev' }}
+          FLOATING_TAG: latest
         shell: bash
         run: |
           trap 'docker logout ghcr.io >/dev/null 2>&1' EXIT
@@ -404,53 +400,3 @@ jobs:
             "${notes_args[@]}" \
             --latest \
             --title "ExcaliSumma ${VERSION}"
-
-  github-dev-release:
-    name: GitHub Dev Release
-    needs: image-builds
-    if: needs.image-builds.outputs.publish == 'true' && needs.image-builds.outputs.stable != 'true'
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: write
-
-    steps:
-      - name: Create GitHub pre-release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          IMAGE_TAG: ${{ needs.image-builds.outputs.image-tag }}
-        run: |
-          tag="v${IMAGE_TAG}"
-          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo "$tag is already published."
-            exit 0
-          fi
-          gh release create "$tag" \
-            --repo "$GITHUB_REPOSITORY" \
-            --target "$GITHUB_SHA" \
-            --notes "Development container images: ${IMAGE_NAMESPACE}/excalisumma-backend:${IMAGE_TAG} and ${IMAGE_NAMESPACE}/excalisumma-frontend:${IMAGE_TAG}." \
-            --prerelease \
-            --title "ExcaliSumma ${IMAGE_TAG}"
-
-  sync-dev:
-    name: Sync Main Back To Dev
-    needs: [image-builds, github-release]
-    if: needs.image-builds.outputs.stable == 'true'
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: write
-
-    steps:
-      - name: Check out main
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
-        with:
-          fetch-depth: 0
-
-      - name: Fast-forward dev when it has not moved
-        shell: bash
-        run: |
-          git fetch origin dev
-          if git merge-base --is-ancestor origin/dev "$GITHUB_SHA"; then
-            git push origin "$GITHUB_SHA:refs/heads/dev"
-          else
-            echo "dev advanced during the release; skipping automatic sync." >> "$GITHUB_STEP_SUMMARY"
-          fi

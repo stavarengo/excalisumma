@@ -83,7 +83,7 @@ export default defineConfig({
     search: { provider: "local" },
     outline: { level: [2, 3], label: "On this page" },
     editLink: {
-      pattern: "https://github.com/stavarengo/excalisumma/edit/dev/docs/:path",
+      pattern: "https://github.com/stavarengo/excalisumma/edit/main/docs/:path",
       text: "Edit this page on GitHub",
     },
     socialLinks: [
