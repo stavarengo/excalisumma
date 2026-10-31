@@ -327,12 +327,18 @@ jobs:
       image-tag: ${{ needs.release-metadata.outputs.image-tag }}
 
     steps:
+      - name: Log in to the container registry
+        if: needs.release-metadata.outputs.publish == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: printf '%s' "$GITHUB_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
+
       - name: Verify published images
         if: needs.release-metadata.outputs.publish == 'true'
         shell: bash
         run: |
           for component in backend frontend; do
-            image="${IMAGE_NAMESPACE}/excalidash-${component}:${{ needs.release-metadata.outputs.image-tag }}"
+            image="${IMAGE_NAMESPACE}/excalitotum-${component}:${{ needs.release-metadata.outputs.image-tag }}"
             docker buildx imagetools inspect "$image" --raw | jq -e '
               [.manifests[].platform | select(.os == "linux") | .architecture] as $architectures
               | ($architectures | index("amd64") != null) and ($architectures | index("arm64") != null)
@@ -350,14 +356,12 @@ jobs:
       - name: Promote verified image pair
         if: needs.release-metadata.outputs.publish == 'true'
         env:
-          GITHUB_TOKEN: ${{ github.token }}
           FLOATING_TAG: ${{ needs.release-metadata.outputs.stable == 'true' && 'latest' || 'dev' }}
         shell: bash
         run: |
-          printf '%s' "$GITHUB_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
           trap 'docker logout ghcr.io >/dev/null 2>&1' EXIT
           for component in backend frontend; do
-            image="${IMAGE_NAMESPACE}/excalidash-${component}"
+            image="${IMAGE_NAMESPACE}/excalitotum-${component}"
             docker buildx imagetools create \
               --tag "${image}:${FLOATING_TAG}" \
               "${image}:${{ needs.release-metadata.outputs.image-tag }}"
