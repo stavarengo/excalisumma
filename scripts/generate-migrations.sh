@@ -6,7 +6,7 @@ PROJECT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 MIGRATIONS_DIR="${PROJECT_DIR}/backend/prisma/migrations"
 PRISMA_HELPER="${PROJECT_DIR}/backend/scripts/provider-prisma.cjs"
 
-echo "=== ExcaliDash Migration Generator ==="
+echo "=== ExcaliTotum Migration Generator ==="
 echo ""
 echo "Select database provider:"
 echo "1) SQLite"

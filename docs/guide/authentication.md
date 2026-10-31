@@ -11,12 +11,12 @@ import { userManagementSlides, passwordResetSlides } from "../.vitepress/theme/s
 
 Choose how people sign in with `AUTH_MODE`:
 
-| Mode            | Sign-in methods                        |
-| --------------- | -------------------------------------- |
-| `local`         | ExcaliDash accounts                    |
-| `hybrid`        | ExcaliDash accounts and OpenID Connect |
-| `oidc_enforced` | OpenID Connect only                    |
-| `disabled`      | No sign-in; one shared identity        |
+| Mode            | Sign-in methods                         |
+| --------------- | --------------------------------------- |
+| `local`         | ExcaliTotum accounts                    |
+| `hybrid`        | ExcaliTotum accounts and OpenID Connect |
+| `oidc_enforced` | OpenID Connect only                     |
+| `disabled`      | No sign-in; one shared identity         |
 
 Use `disabled` only in an isolated, trusted environment. Every visitor has the same access.
 
@@ -47,7 +47,7 @@ The administrator must enable password reset and configure email delivery. See t
 ## Configure OpenID Connect
 
 1. In your identity provider, create an OpenID Connect client.
-2. Register `https://YOUR_HOST/api/auth/oidc/callback` as its redirect URI. Replace `YOUR_HOST` with your ExcaliDash hostname.
+2. Register `https://YOUR_HOST/api/auth/oidc/callback` as its redirect URI. Replace `YOUR_HOST` with your ExcaliTotum hostname.
 3. Add the provider settings to `compose.override.yml`:
 
    ```yaml
@@ -69,7 +69,7 @@ The administrator must enable password reset and configure email delivery. See t
    docker compose -f docker-compose.prod.yml -f compose.override.yml up -d
    ```
 
-6. Open ExcaliDash and sign in with the provider.
+6. Open ExcaliTotum and sign in with the provider.
 
 Notes:
 `OIDC_JIT_PROVISIONING=true` creates accounts on first sign-in. `OIDC_FIRST_USER_ADMIN=true` grants administrator access to the first provisioned OIDC user. Both default to `true`.

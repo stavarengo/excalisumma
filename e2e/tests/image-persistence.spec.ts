@@ -49,7 +49,7 @@ test.describe("Image Persistence - Browser E2E Tests", () => {
   }) => {
     await page.goto("/");
 
-    await expect(page).toHaveTitle(/ExcaliDash/i);
+    await expect(page).toHaveTitle(/ExcaliTotum/i);
 
     await expect(page.locator("body")).toBeVisible();
   });

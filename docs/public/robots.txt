@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://excalidash.xyz/sitemap.xml
+Sitemap: https://excalidash.future-domain.pending/sitemap.xml

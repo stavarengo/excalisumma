@@ -17,9 +17,9 @@ export const useEditorChrome = ({
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
   useEffect(() => {
-    document.title = `${drawingName} - ExcaliDash`;
+    document.title = `${drawingName} - ExcaliTotum`;
     return () => {
-      document.title = "ExcaliDash";
+      document.title = "ExcaliTotum";
     };
   }, [drawingName]);
 

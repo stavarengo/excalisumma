@@ -52,7 +52,7 @@ export const authEnv: readonly EnvVarSpec[] = [
     group: "Authentication",
     kind: "string",
     doc: "Sender address for password-reset email.",
-    example: "ExcaliDash <noreply@example.com>",
+    example: "ExcaliTotum <noreply@example.com>",
   },
   {
     name: "MAIL_REPLY_TO",

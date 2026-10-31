@@ -95,7 +95,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             style={{ fontFamily: displayFontFamily }}
           >
             <Logo className="w-10 h-10" />
-            <span className="mt-1">ExcaliDash</span>
+            <span className="mt-1">ExcaliTotum</span>
             <span className="mt-2 font-sans text-xs font-bold text-red-500">
               Beta
             </span>

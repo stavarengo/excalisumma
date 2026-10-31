@@ -56,7 +56,7 @@ export const UpdateSettingsCard = ({
         <span className="inline-flex flex-wrap items-center gap-2">
           {status}
           <a
-            href="https://github.com/ZimengXiong/ExcaliDash/releases"
+            href="https://github.com/stavarengo/excalitotum/releases"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center font-bold text-indigo-600 hover:underline dark:text-indigo-400"

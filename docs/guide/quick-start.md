@@ -1,6 +1,6 @@
 ---
 title: "Self-host Excalidraw: Quick Start"
-description: Install ExcaliDash with Docker Compose, create your administrator account, and start a self-hosted Excalidraw workspace.
+description: Install ExcaliTotum with Docker Compose, create your administrator account, and start a self-hosted Excalidraw workspace.
 ---
 
 <script setup>
@@ -9,7 +9,7 @@ import { setupSlides } from "../.vitepress/theme/screenshot-flows";
 
 # Quick start
 
-Run ExcaliDash with Docker Compose.
+Run ExcaliTotum with Docker Compose.
 
 ## Prerequisites
 
@@ -17,13 +17,13 @@ Run ExcaliDash with Docker Compose.
 - Docker Compose v2
 - Port `6767` available on the host
 
-## Start ExcaliDash
+## Start ExcaliTotum
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/ZimengXiong/ExcaliDash.git
-   cd ExcaliDash
+   git clone https://github.com/stavarengo/excalitotum.git
+   cd excalitotum
    ```
 
 2. Start the services:

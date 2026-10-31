@@ -1,11 +1,11 @@
 ---
 title: Self-hosted Excalidraw Collaboration and Sharing
-description: Collaborate on Excalidraw drawings with your own ExcaliDash server. Share drawings and collections, manage access, and troubleshoot live editing.
+description: Collaborate on Excalidraw drawings with your own ExcaliTotum server. Share drawings and collections, manage access, and troubleshoot live editing.
 ---
 
 # Self-hosted Excalidraw collaboration
 
-ExcaliDash lets people edit Excalidraw drawings together while storing them on your own server. The frontend and backend in the [Docker Compose deployment](/deploy/docker) provide the workspace and real-time connection.
+ExcaliTotum lets people edit Excalidraw drawings together while storing them on your own server. The frontend and backend in the [Docker Compose deployment](/deploy/docker) provide the workspace and real-time connection.
 
 ## Share a drawing with your team
 

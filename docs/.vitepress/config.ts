@@ -2,21 +2,21 @@ import { defineConfig } from "vitepress";
 import { docsReviewPlugin } from "./review/plugin.mjs";
 
 export default defineConfig({
-  title: "ExcaliDash",
+  title: "ExcaliTotum",
   description:
-    "Self-host Excalidraw with saved drawings, collections, real-time collaboration, and version history. Deploy ExcaliDash with Docker Compose.",
-  sitemap: { hostname: "https://excalidash.xyz" },
+    "Self-host Excalidraw with saved drawings, collections, real-time collaboration, and version history. Deploy ExcaliTotum with Docker Compose.",
+  sitemap: { hostname: "https://excalidash.future-domain.pending" },
   transformHead({ pageData }) {
     if (pageData.relativePath === "404.md") return [];
     const path = pageData.relativePath
       .replace(/index\.md$/, "")
       .replace(/\.md$/, "");
-    const url = `https://excalidash.xyz/${path}`;
+    const url = `https://excalidash.future-domain.pending/${path}`;
     const title = pageData.frontmatter.title || pageData.title;
     return [
       ["link", { rel: "canonical", href: url }],
       ["meta", { property: "og:type", content: "website" }],
-      ["meta", { property: "og:site_name", content: "ExcaliDash" }],
+      ["meta", { property: "og:site_name", content: "ExcaliTotum" }],
       ["meta", { property: "og:title", content: title }],
       ["meta", { property: "og:description", content: pageData.description }],
       ["meta", { property: "og:url", content: url }],
@@ -24,7 +24,8 @@ export default defineConfig({
         "meta",
         {
           property: "og:image",
-          content: "https://excalidash.xyz/images/workspace.png",
+          content:
+            "https://excalidash.future-domain.pending/images/workspace.png",
         },
       ],
       ["meta", { name: "twitter:card", content: "summary_large_image" }],
@@ -44,7 +45,7 @@ export default defineConfig({
   ],
   themeConfig: {
     siteTitle: false,
-    logo: { src: "/images/logo.png", alt: "ExcaliDash" },
+    logo: { src: "/images/logo.png", alt: "ExcaliTotum" },
     nav: [
       { text: "Guide", link: "/guide/quick-start" },
       { text: "Deploy", link: "/deploy/docker" },
@@ -82,11 +83,11 @@ export default defineConfig({
     search: { provider: "local" },
     outline: { level: [2, 3], label: "On this page" },
     editLink: {
-      pattern: "https://github.com/ZimengXiong/ExcaliDash/edit/dev/docs/:path",
+      pattern: "https://github.com/stavarengo/excalitotum/edit/dev/docs/:path",
       text: "Edit this page on GitHub",
     },
     socialLinks: [
-      { icon: "github", link: "https://github.com/ZimengXiong/ExcaliDash" },
+      { icon: "github", link: "https://github.com/stavarengo/excalitotum" },
     ],
     footer: {
       message: "Self-hosted, open source, and built around Excalidraw.",

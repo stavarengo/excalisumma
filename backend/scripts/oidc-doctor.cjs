@@ -190,7 +190,7 @@ const main = async () => {
           )
         : supportedAuthMethods.includes("none");
 
-  console.log("ExcaliDash OIDC Doctor");
+  console.log("ExcaliTotum OIDC Doctor");
   console.log("======================");
   printLine("Provider (detected)", provider);
   printLine("Provider name (env)", providerName);

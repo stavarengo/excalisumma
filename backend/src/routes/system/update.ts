@@ -131,7 +131,7 @@ export const fetchLatest = async (
 
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
-    "User-Agent": "ExcaliDash-UpdateCheck",
+    "User-Agent": "ExcaliTotum-UpdateCheck",
   };
   const token = envGithubToken();
   if (token) {
@@ -142,7 +142,7 @@ export const fetchLatest = async (
   }
 
   const url =
-    "https://api.github.com/repos/ZimengXiong/ExcaliDash/releases" +
+    "https://api.github.com/repos/stavarengo/excalitotum/releases" +
     (channel === "stable" ? "/latest" : "?per_page=100");
   const resp = await fetch(url, {
     headers,

@@ -4,8 +4,10 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.excalidash.xyz" }],
-      "destination": "https://excalidash.xyz/:path*",
+      "has": [
+        { "type": "host", "value": "www.excalidash.future-domain.pending" }
+      ],
+      "destination": "https://excalidash.future-domain.pending/:path*",
       "permanent": true
     },
     {

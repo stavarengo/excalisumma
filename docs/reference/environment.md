@@ -1,6 +1,6 @@
 ---
-title: ExcaliDash Environment Variables
-description: Reference ExcaliDash environment variables for databases, authentication, OpenID Connect, backups, and server configuration.
+title: ExcaliTotum Environment Variables
+description: Reference ExcaliTotum environment variables for databases, authentication, OpenID Connect, backups, and server configuration.
 ---
 
 # Environment reference

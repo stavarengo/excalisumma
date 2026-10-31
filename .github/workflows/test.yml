@@ -16,7 +16,7 @@ permissions:
   contents: read
 
 env:
-  DOCKERHUB_USERNAME: zimengxiong
+  IMAGE_NAMESPACE: ghcr.io/stavarengo
 
 jobs:
   changes:
@@ -254,6 +254,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      packages: write
     uses: docker/github-builder/.github/workflows/build.yml@58cb9f5b71b1836d6f690c1e95effdeb9b98cb8a
     with:
       job-name-prefix: Backend
@@ -267,7 +268,7 @@ jobs:
       cache-scope: backend-image
       build-args: APP_BUILD_LABEL=${{ needs.release-metadata.outputs.build-label }}
       sbom: ${{ needs.release-metadata.outputs.publish == 'true' }}
-      meta-images: zimengxiong/excalidash-backend
+      meta-images: ghcr.io/stavarengo/excalitotum-backend
       meta-tags: ${{ needs.release-metadata.outputs.tags }}
       meta-labels: |
         org.opencontainers.image.source=https://github.com/${{ github.repository }}
@@ -275,9 +276,9 @@ jobs:
         org.opencontainers.image.version=${{ needs.release-metadata.outputs.image-tag }}
     secrets:
       registry-auths: |
-        - registry: docker.io
-          username: zimengxiong
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        - registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
   frontend-image:
     name: Frontend Image
@@ -285,6 +286,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      packages: write
     uses: docker/github-builder/.github/workflows/build.yml@58cb9f5b71b1836d6f690c1e95effdeb9b98cb8a
     with:
       job-name-prefix: Frontend
@@ -298,7 +300,7 @@ jobs:
       cache-scope: frontend-image
       sbom: ${{ needs.release-metadata.outputs.publish == 'true' }}
       build-args: VITE_APP_BUILD_LABEL=${{ needs.release-metadata.outputs.build-label }}
-      meta-images: zimengxiong/excalidash-frontend
+      meta-images: ghcr.io/stavarengo/excalitotum-frontend
       meta-tags: ${{ needs.release-metadata.outputs.tags }}
       meta-labels: |
         org.opencontainers.image.source=https://github.com/${{ github.repository }}
@@ -306,15 +308,18 @@ jobs:
         org.opencontainers.image.version=${{ needs.release-metadata.outputs.image-tag }}
     secrets:
       registry-auths: |
-        - registry: docker.io
-          username: zimengxiong
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        - registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
   image-builds:
     name: Container Image Builds
     needs: [release-metadata, backend-image, frontend-image]
     if: always() && needs.release-metadata.result == 'success' && needs.backend-image.result == 'success' && needs.frontend-image.result == 'success'
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
     outputs:
       publish: ${{ needs.release-metadata.outputs.publish }}
       stable: ${{ needs.release-metadata.outputs.stable }}
@@ -327,7 +332,7 @@ jobs:
         shell: bash
         run: |
           for component in backend frontend; do
-            image="${DOCKERHUB_USERNAME}/excalidash-${component}:${{ needs.release-metadata.outputs.image-tag }}"
+            image="${IMAGE_NAMESPACE}/excalidash-${component}:${{ needs.release-metadata.outputs.image-tag }}"
             docker buildx imagetools inspect "$image" --raw | jq -e '
               [.manifests[].platform | select(.os == "linux") | .architecture] as $architectures
               | ($architectures | index("amd64") != null) and ($architectures | index("arm64") != null)
@@ -340,19 +345,19 @@ jobs:
 
       - name: Verify frontend ports and non-root execution
         if: needs.release-metadata.outputs.publish == 'true'
-        run: sh scripts/test-frontend-container.sh "${DOCKERHUB_USERNAME}/excalidash-frontend:${{ needs.release-metadata.outputs.image-tag }}"
+        run: sh scripts/test-frontend-container.sh "${IMAGE_NAMESPACE}/excalitotum-frontend:${{ needs.release-metadata.outputs.image-tag }}"
 
       - name: Promote verified image pair
         if: needs.release-metadata.outputs.publish == 'true'
         env:
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           FLOATING_TAG: ${{ needs.release-metadata.outputs.stable == 'true' && 'latest' || 'dev' }}
         shell: bash
         run: |
-          printf '%s' "$DOCKERHUB_TOKEN" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
-          trap 'docker logout >/dev/null 2>&1' EXIT
+          printf '%s' "$GITHUB_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
+          trap 'docker logout ghcr.io >/dev/null 2>&1' EXIT
           for component in backend frontend; do
-            image="${DOCKERHUB_USERNAME}/excalidash-${component}"
+            image="${IMAGE_NAMESPACE}/excalidash-${component}"
             docker buildx imagetools create \
               --tag "${image}:${FLOATING_TAG}" \
               "${image}:${{ needs.release-metadata.outputs.image-tag }}"
@@ -394,7 +399,7 @@ jobs:
             --target "$GITHUB_SHA" \
             "${notes_args[@]}" \
             --latest \
-            --title "ExcaliDash ${VERSION}"
+            --title "ExcaliTotum ${VERSION}"
 
   github-dev-release:
     name: GitHub Dev Release
@@ -418,9 +423,9 @@ jobs:
           gh release create "$tag" \
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
-            --notes "Development container images: ${DOCKERHUB_USERNAME}/excalidash-backend:${IMAGE_TAG} and ${DOCKERHUB_USERNAME}/excalidash-frontend:${IMAGE_TAG}." \
+            --notes "Development container images: ${IMAGE_NAMESPACE}/excalitotum-backend:${IMAGE_TAG} and ${IMAGE_NAMESPACE}/excalitotum-frontend:${IMAGE_TAG}." \
             --prerelease \
-            --title "ExcaliDash ${IMAGE_TAG}"
+            --title "ExcaliTotum ${IMAGE_TAG}"
 
   sync-dev:
     name: Sync Main Back To Dev

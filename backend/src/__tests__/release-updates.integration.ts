@@ -26,7 +26,7 @@ describe("release update HTTP routes", () => {
     published_at: published,
     prerelease,
     draft: false,
-    html_url: `https://github.com/ZimengXiong/ExcaliDash/releases/tag/v${tag}`,
+    html_url: `https://github.com/stavarengo/excalitotum/releases/tag/v${tag}`,
   });
   const upstream = (payload: unknown, status = 200) =>
     vi.spyOn(globalThis, "fetch").mockResolvedValue(
@@ -65,7 +65,7 @@ describe("release update HTTP routes", () => {
       isUpdateAvailable: true,
     });
     expect(fetch).toHaveBeenCalledWith(
-      "https://api.github.com/repos/ZimengXiong/ExcaliDash/releases/latest",
+      "https://api.github.com/repos/stavarengo/excalitotum/releases/latest",
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
   });

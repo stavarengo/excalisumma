@@ -1,6 +1,6 @@
 ---
 title: Self-hosted Excalidraw Storage, History, and Backups
-description: Keep Excalidraw drawings on your ExcaliDash server. Understand persistent Docker storage, version history, library exports, and database backups.
+description: Keep Excalidraw drawings on your ExcaliTotum server. Understand persistent Docker storage, version history, library exports, and database backups.
 ---
 
 <script setup>
@@ -9,7 +9,7 @@ import { backupSlides } from "../.vitepress/theme/screenshot-flows";
 
 # Excalidraw storage and backups on your server
 
-ExcaliDash stores drawings in your server's database so you can return to your workspace from another device. The default [Docker Compose stack](/deploy/docker) uses SQLite and a named `backend-data` volume. PostgreSQL is also supported through the [database configuration](/reference/environment).
+ExcaliTotum stores drawings in your server's database so you can return to your workspace from another device. The default [Docker Compose stack](/deploy/docker) uses SQLite and a named `backend-data` volume. PostgreSQL is also supported through the [database configuration](/reference/environment).
 
 ## What persists in Docker?
 
@@ -19,7 +19,7 @@ Deleting the volume, including with `docker compose down --volumes`, removes its
 
 ## Organize and move drawings
 
-Use collections to group drawings and search your workspace to find them again. ExcaliDash supports drawing import and export in `.excalidraw` format, plus library export and import for moving your drawings between instances.
+Use collections to group drawings and search your workspace to find them again. ExcaliTotum supports drawing import and export in `.excalidraw` format, plus library export and import for moving your drawings between instances.
 
 <ScreenshotCarousel label="Export and import a library backup" :slides="backupSlides" />
 

@@ -134,7 +134,7 @@ export const AuthSetupChoice: React.FC = () => {
             <>
               <div className="mb-6 rounded-lg border border-indigo-200 dark:border-neutral-700 bg-indigo-50 dark:bg-neutral-800 p-4 text-sm text-slate-700 dark:text-neutral-200">
                 <div className="font-semibold text-indigo-900 dark:text-indigo-200 mb-1">
-                  Secure ExcaliDash
+                  Secure ExcaliTotum
                 </div>
                 <div>Create an admin account and restrict access.</div>
               </div>

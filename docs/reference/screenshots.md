@@ -1,6 +1,6 @@
 ---
-title: "ExcaliDash Screenshots: Dashboard, Editor, and Collaboration"
-description: See ExcaliDash screenshots of the Excalidraw dashboard, collections, editor, real-time collaboration, and tablet and mobile layouts.
+title: "ExcaliTotum Screenshots: Dashboard, Editor, and Collaboration"
+description: See ExcaliTotum screenshots of the Excalidraw dashboard, collections, editor, real-time collaboration, and tablet and mobile layouts.
 ---
 
 <script setup>
@@ -9,7 +9,7 @@ import { setupSlides, passwordResetSlides } from "../.vitepress/theme/screenshot
 
 # Screenshots
 
-Explore the ExcaliDash workspace, editor, and real-time collaboration. Select any screenshot to open the full-size image.
+Explore the ExcaliTotum workspace, editor, and real-time collaboration. Select any screenshot to open the full-size image.
 
 Try toggling dark mode on this page!!
 

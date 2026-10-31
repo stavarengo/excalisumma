@@ -1,6 +1,6 @@
 ---
-title: ExcaliDash Local Development
-description: Set up the ExcaliDash frontend and backend locally to develop a self-hosted Excalidraw workspace.
+title: ExcaliTotum Local Development
+description: Set up the ExcaliTotum frontend and backend locally to develop a self-hosted Excalidraw workspace.
 ---
 
 <script setup>
