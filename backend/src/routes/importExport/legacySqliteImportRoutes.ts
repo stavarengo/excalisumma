@@ -155,7 +155,7 @@ export const registerLegacySqliteImportRoutes = (
           return res.status(500).json({
             error: "Legacy DB support unavailable",
             message:
-              "Failed to open the SQLite database for inspection. If you're on Node < 22, you may need to rebuild native dependencies (e.g. `cd backend && npm rebuild better-sqlite3`).",
+              "Failed to open the SQLite database for inspection. If you're on Node < 22, you may need to rebuild native dependencies (e.g. `cd backend && pnpm rebuild better-sqlite3`).",
           });
         } finally {
           try {
@@ -533,7 +533,7 @@ export const registerLegacySqliteImportRoutes = (
           return res.status(500).json({
             error: "Legacy DB support unavailable",
             message:
-              "Failed to open the SQLite database for import. If you're on Node < 22, you may need to rebuild native dependencies (e.g. `cd backend && npm rebuild better-sqlite3`).",
+              "Failed to open the SQLite database for import. If you're on Node < 22, you may need to rebuild native dependencies (e.g. `cd backend && pnpm rebuild better-sqlite3`).",
           });
         } finally {
           try {

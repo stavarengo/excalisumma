@@ -81,7 +81,7 @@ export const setupTestDb = () => {
 
   try {
     withDbPushLock(() => {
-      execSync("npx prisma db push --skip-generate --force-reset", {
+      execSync("pnpm exec prisma db push --skip-generate --force-reset", {
         cwd: path.resolve(__dirname, "../../"),
         env: {
           ...process.env,

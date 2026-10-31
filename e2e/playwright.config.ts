@@ -91,7 +91,7 @@ export default defineConfig({
             // Tests need a stable process, not a watcher that restarts when
             // another local build regenerates Prisma or writes artifacts.
             command:
-              "cd ../backend && npm run predev && npx ts-node src/index.ts",
+              "cd ../backend && pnpm run predev && pnpm exec ts-node src/index.ts",
             url: `${BACKEND_URL}/health`,
             reuseExistingServer: process.env.E2E_REUSE_SERVER === "true",
             timeout: 120000,
@@ -112,7 +112,7 @@ export default defineConfig({
             },
           },
           {
-            command: `cd ../frontend && npm run dev -- --host 127.0.0.1 --port ${frontendRuntimePort}`,
+            command: `cd ../frontend && pnpm run dev --host 127.0.0.1 --port ${frontendRuntimePort}`,
             url: FRONTEND_URL,
             reuseExistingServer: process.env.E2E_REUSE_SERVER === "true",
             timeout: 120000,

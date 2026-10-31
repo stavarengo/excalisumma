@@ -28,18 +28,4 @@ for (const relativePath of [
   }
 }
 
-for (const relativePath of [
-  "package-lock.json",
-  "backend/package-lock.json",
-  "frontend/package-lock.json",
-  "e2e/package-lock.json",
-]) {
-  const lockfile = JSON.parse(
-    fs.readFileSync(path.join(root, relativePath), "utf8"),
-  );
-  if (Object.hasOwn(lockfile, "version")) {
-    throw new Error(`${relativePath} duplicates VERSION`);
-  }
-}
-
 console.log(`Version ${version} is sourced from VERSION`);

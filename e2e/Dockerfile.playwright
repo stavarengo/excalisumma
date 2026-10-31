@@ -3,11 +3,15 @@ FROM mcr.microsoft.com/playwright:v1.57.0-noble
 
 WORKDIR /app
 
+# Corepack activates the pnpm version pinned in package.json.
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN corepack enable pnpm
+
 # Copy package files
-COPY package.json package-lock.json* ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install dependencies
-RUN npm ci
+RUN pnpm install --frozen-lockfile
 
 # Copy test files and config
 COPY playwright.config.ts ./
@@ -18,4 +22,4 @@ COPY fixtures/ ./fixtures/
 ENV CI=true
 
 # Default command runs tests in headless mode
-CMD ["npx", "playwright", "test", "--reporter=html,list"]
+CMD ["pnpm", "exec", "playwright", "test", "--reporter=html,list"]

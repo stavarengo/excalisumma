@@ -56,29 +56,28 @@ jobs:
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+
       - name: Setup Node.js
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: "24.22.1"
-          cache: "npm"
+          cache: "pnpm"
           cache-dependency-path: |
-            backend/package-lock.json
-            frontend/package-lock.json
+            backend/pnpm-lock.yaml
+            frontend/pnpm-lock.yaml
 
       - name: Install test dependencies
         run: |
-          npm --prefix backend ci
-          npm --prefix frontend ci
+          pnpm -C backend install --frozen-lockfile
+          pnpm -C frontend install --frozen-lockfile
 
       - name: Generate Prisma client
-        run: |
-          cd backend
-          npx prisma generate
+        run: pnpm -C backend exec prisma generate
 
       - name: Run backend tests
-        run: |
-          cd backend
-          npm test
+        run: pnpm -C backend test
 
   repo-checks:
     name: Repo Checks
@@ -87,32 +86,35 @@ jobs:
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+
       - name: Setup Node.js
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: "24.22.1"
-          cache: "npm"
+          cache: "pnpm"
           cache-dependency-path: |
-            package-lock.json
-            backend/package-lock.json
-            frontend/package-lock.json
+            pnpm-lock.yaml
+            backend/pnpm-lock.yaml
+            frontend/pnpm-lock.yaml
 
       - name: Install check dependencies
         run: |
-          npm ci
-          npm --prefix backend ci
-          npm --prefix frontend ci
+          pnpm install --frozen-lockfile
+          pnpm -C backend install --frozen-lockfile
+          pnpm -C frontend install --frozen-lockfile
 
       - name: Check formatting and lint
-        run: npm run check
+        run: pnpm check
 
       - name: Run frontend unit and lab configuration tests
         run: |
-          npm --prefix frontend run test:unit
+          pnpm -C frontend test:unit
           node --test scripts/lab-frontend-ports.test.mjs
 
       - name: Build documentation
-        run: npm run docs:build
+        run: pnpm docs:build
 
   e2e-tests:
     name: E2E (${{ matrix.mode }})
@@ -128,37 +130,40 @@ jobs:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         if: needs.changes.outputs.application == 'true'
 
+      - name: Setup pnpm
+        if: needs.changes.outputs.application == 'true'
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+
       - name: Setup Node.js
         if: needs.changes.outputs.application == 'true'
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: "24.22.1"
-          cache: npm
+          cache: pnpm
           cache-dependency-path: |
-            backend/package-lock.json
-            frontend/package-lock.json
-            e2e/package-lock.json
+            backend/pnpm-lock.yaml
+            frontend/pnpm-lock.yaml
+            e2e/pnpm-lock.yaml
 
       - name: Install dependencies and generate Prisma client
         if: needs.changes.outputs.application == 'true'
         run: |
-          npm --prefix backend ci
-          npm --prefix frontend ci
-          npm --prefix e2e ci
-          cd backend && npx prisma generate
+          pnpm -C backend install --frozen-lockfile
+          pnpm -C frontend install --frozen-lockfile
+          pnpm -C e2e install --frozen-lockfile
+          pnpm -C backend exec prisma generate
 
       - name: Install Chromium
         if: needs.changes.outputs.application == 'true'
-        working-directory: e2e
-        run: npx playwright install chromium --with-deps
+        run: pnpm -C e2e exec playwright install chromium --with-deps
 
       - name: Typecheck browser tests
         if: needs.changes.outputs.application == 'true'
-        run: npm --prefix e2e run check
+        run: pnpm -C e2e check
 
       - name: Run real browser and API journeys
         if: needs.changes.outputs.application == 'true'
-        run: npm --prefix e2e test
+        run: pnpm -C e2e test
         env:
           E2E_AUTH: ${{ matrix.mode == 'authenticated' && 'true' || 'false' }}
 

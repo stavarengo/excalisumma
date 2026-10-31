@@ -6,7 +6,7 @@ import type { EnvVarSpec } from "./registry";
 const ENV_EXAMPLE_PATH = path.resolve(__dirname, "../../.env.example");
 
 const GENERATED_NOTE =
-  "GENERATED FILE — edit backend/src/config/registry/* and run npm run gen:env";
+  "GENERATED FILE — edit backend/src/config/registry/* and run pnpm gen:env";
 
 /** Groups in the order they first appear in the registry. */
 const groupOrder = (): string[] => {

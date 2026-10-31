@@ -23,23 +23,14 @@ const env = {
   VITE_DEV_BACKEND_URL: "http://127.0.0.1:8107",
 };
 const children = [
-  spawn("npm", ["run", "dev"], {
+  spawn("pnpm", ["run", "dev"], {
     cwd: resolve(root, "backend"),
     env,
     stdio: "inherit",
   }),
   spawn(
-    "npm",
-    [
-      "run",
-      "dev",
-      "--",
-      "--host",
-      "127.0.0.1",
-      "--port",
-      "6777",
-      "--strictPort",
-    ],
+    "pnpm",
+    ["run", "dev", "--host", "127.0.0.1", "--port", "6777", "--strictPort"],
     { cwd: resolve(root, "frontend"), env, stdio: "inherit" },
   ),
 ];

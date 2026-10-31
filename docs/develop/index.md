@@ -14,7 +14,7 @@ Run the backend and frontend in separate terminals.
 ## Requirements
 
 - Node.js 24.22.1+ (`nvm use` selects the version in `.nvmrc`)
-- npm 10
+- pnpm 11 (`corepack enable pnpm` activates the version pinned in `package.json`)
 - Git
 
 ## Install dependencies
@@ -22,8 +22,8 @@ Run the backend and frontend in separate terminals.
 From the repository root:
 
 ```bash
-npm run install:all
-npm install
+pnpm install
+pnpm install:all
 ```
 
 ## Configure the apps
@@ -44,7 +44,7 @@ BACKUP_DIR=./backups
 
 ```bash
 cd backend
-npm run dev
+pnpm dev
 ```
 
 ## Start the frontend
@@ -53,7 +53,7 @@ In another terminal:
 
 ```bash
 cd frontend
-npm run dev
+pnpm dev
 ```
 
 Open `http://localhost:6767`, then follow the first-run screens below. Select the arrows to move from authentication setup through creating an administrator and opening your first drawing.

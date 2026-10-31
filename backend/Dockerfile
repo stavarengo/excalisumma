@@ -7,8 +7,13 @@ WORKDIR /app
 # Prisma select the correct engine while generating its clients.
 RUN apk add --no-cache python3 make g++ openssl
 
-COPY backend/package*.json ./
-RUN npm ci && npm cache clean --force
+# Corepack activates the pnpm version pinned in package.json. The store lives in
+# a build cache mount so it never lands in an image layer.
+ENV PNPM_HOME=/pnpm COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN corepack enable pnpm
+
+COPY backend/package.json backend/pnpm-lock.yaml backend/pnpm-workspace.yaml ./
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 # Build stage
 FROM dependencies AS builder
@@ -27,10 +32,10 @@ RUN sed -i '/datasource db {/,/}/ s/provider = env("[^"]*")/provider = "sqlite"/
 # environment. Restore the SQLite client for the TypeScript build below.
 RUN set -eu; \
     mkdir -p /app/prisma_clients/sqlite /app/prisma_clients/postgresql; \
-    npx prisma generate; \
+    pnpm exec prisma generate; \
     cp -R /app/src/generated/. /app/prisma_clients/sqlite/; \
     sed -i '/datasource db {/,/}/ s/provider = "[^"]*"/provider = "postgresql"/' prisma/schema.prisma; \
-    npx prisma generate; \
+    pnpm exec prisma generate; \
     cp -R /app/src/generated/. /app/prisma_clients/postgresql/; \
     rm -rf /app/src/generated; \
     mkdir -p /app/src/generated; \
@@ -41,13 +46,13 @@ RUN set -eu; \
 COPY backend/src ./src
 
 # Build TypeScript
-RUN npx tsc
+RUN pnpm exec tsc
 
 # Remove development dependencies from the already-built dependency tree rather
 # than compiling production dependencies a second time.
 FROM dependencies AS production-dependencies
 
-RUN npm prune --omit=dev && npm cache clean --force
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm prune --prod
 
 # Production stage
 FROM node:24.22.1-alpine
@@ -57,8 +62,8 @@ ENV APP_BUILD_LABEL=${APP_BUILD_LABEL}
 
 # Build tooling is not needed at runtime. Removing the bundled package managers
 # also removes their dependency trees from the production image.
-RUN rm -rf /usr/local/lib/node_modules/npm /opt/yarn-* && \
-    rm -f /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/yarn /usr/local/bin/yarnpkg
+RUN rm -rf /usr/local/lib/node_modules /opt/yarn-* && \
+    rm -f /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/corepack /usr/local/bin/yarn /usr/local/bin/yarnpkg
 
 # Install runtime packages and create non-root user
 RUN apk upgrade --no-cache && \
