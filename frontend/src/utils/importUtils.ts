@@ -114,7 +114,7 @@ export const importDrawings = async (
 /**
  * Legacy import helper.
  * - Supports individual `.excalidraw` / Excalidraw `.json` drawings (same as importDrawings)
- * - Supports legacy ExcaliTotum export `.json` with `{ drawings: [...] }`
+ * - Supports legacy ExcaliSumma export `.json` with `{ drawings: [...] }`
  */
 export const importLegacyFiles = async (
   files: File[],

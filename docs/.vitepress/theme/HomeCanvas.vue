@@ -43,7 +43,7 @@ const imageUrl = (
     </header>
 
     <section class="drawing-board">
-      <figure class="drawing-scene" aria-label="ExcaliTotum screenshots">
+      <figure class="drawing-scene" aria-label="ExcaliSumma screenshots">
         <div class="scene-stack">
           <button
             v-for="(image, index) in frontmatter.canvasImages"

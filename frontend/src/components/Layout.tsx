@@ -141,7 +141,7 @@ export const Layout: React.FC<LayoutProps> = ({
                   className="text-xl text-slate-900 dark:text-white mt-1"
                   style={{ fontFamily: displayFontFamily }}
                 >
-                  ExcaliTotum
+                  ExcaliSumma
                 </span>
                 <span className="mt-2 text-[10px] font-bold text-red-500">
                   Beta

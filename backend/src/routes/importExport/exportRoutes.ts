@@ -231,9 +231,9 @@ export const registerExcalidashExportRoute = (
         });
       }
 
-      const readme = `ExcaliTotum Backup (.excalidash)
+      const readme = `ExcaliSumma Backup (.excalidash)
 
-This file is a zip archive containing a versioned ExcaliTotum manifest and your drawings,
+This file is a zip archive containing a versioned ExcaliSumma manifest and your drawings,
 organized into folders by collection.
 
 Files:

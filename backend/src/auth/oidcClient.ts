@@ -50,7 +50,7 @@ export const createOidcClientFactory = (
     }
     throw new Error(
       `OIDC provider does not advertise support for client_secret-based token endpoint auth methods (tried: ${preferred.join(", ")}). ` +
-        `If your provider requires JWT-based client auth (private_key_jwt/client_secret_jwt), ExcaliTotum currently does not expose configuration for that.`,
+        `If your provider requires JWT-based client auth (private_key_jwt/client_secret_jwt), ExcaliSumma currently does not expose configuration for that.`,
     );
   };
   const buildOidcClient = async (

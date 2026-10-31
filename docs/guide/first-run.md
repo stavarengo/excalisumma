@@ -1,6 +1,6 @@
 ---
-title: Set Up Your ExcaliTotum Workspace
-description: Create your ExcaliTotum administrator account, invite users, and organize your first Excalidraw drawings into collections.
+title: Set Up Your ExcaliSumma Workspace
+description: Create your ExcaliSumma administrator account, invite users, and organize your first Excalidraw drawings into collections.
 ---
 
 <script setup>
@@ -15,7 +15,7 @@ Create the administrator account before inviting other users. The default authen
 
 | Mode            | Best for                                   |
 | --------------- | ------------------------------------------ |
-| `local`         | ExcaliTotum accounts                       |
+| `local`         | ExcaliSumma accounts                       |
 | `hybrid`        | Local accounts and OpenID Connect          |
 | `oidc_enforced` | OpenID Connect only                        |
 | `disabled`      | Personal use in isolated environments only |
@@ -50,7 +50,7 @@ Use the arrows to explore an established example workspace, drawing sharing, and
 
 ## Securing your instance
 
-Before exposing ExcaliTotum beyond a local machine:
+Before exposing ExcaliSumma beyond a local machine:
 
 - Terminate TLS at a trusted reverse proxy.
 - Set stable `JWT_SECRET` and `CSRF_SECRET` values.

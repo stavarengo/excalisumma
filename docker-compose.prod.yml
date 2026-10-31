@@ -1,7 +1,7 @@
 services:
   backend:
-    image: ghcr.io/stavarengo/excalitotum-backend:${EXCALIDASH_TAG:-latest}
-    container_name: excalitotum-backend
+    image: ghcr.io/stavarengo/excalisumma-backend:${EXCALIDASH_TAG:-latest}
+    container_name: excalisumma-backend
     # Run an init process (PID 1) that reaps zombies and forwards SIGTERM/SIGINT
     # to node so graceful shutdown (io.close / prisma.$disconnect) actually runs.
     init: true
@@ -52,8 +52,8 @@ services:
       retries: 3
 
   frontend:
-    image: ghcr.io/stavarengo/excalitotum-frontend:${EXCALIDASH_TAG:-latest}
-    container_name: excalitotum-frontend
+    image: ghcr.io/stavarengo/excalisumma-frontend:${EXCALIDASH_TAG:-latest}
+    container_name: excalisumma-frontend
     ports:
       - "6767:8080"
     depends_on:

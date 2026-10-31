@@ -1,7 +1,7 @@
 {
   "realm": "excalidash",
   "enabled": true,
-  "displayName": "ExcaliTotum (Local Multi Stack)",
+  "displayName": "ExcaliSumma (Local Multi Stack)",
   "registrationAllowed": false,
   "resetPasswordAllowed": true,
   "loginWithEmailAllowed": true,
@@ -10,7 +10,7 @@
   "clients": [
     {
       "clientId": "excalidash",
-      "name": "ExcaliTotum",
+      "name": "ExcaliSumma",
       "protocol": "openid-connect",
       "enabled": true,
       "publicClient": false,

@@ -268,7 +268,7 @@ jobs:
       cache-scope: backend-image
       build-args: APP_BUILD_LABEL=${{ needs.release-metadata.outputs.build-label }}
       sbom: ${{ needs.release-metadata.outputs.publish == 'true' }}
-      meta-images: ghcr.io/stavarengo/excalitotum-backend
+      meta-images: ghcr.io/stavarengo/excalisumma-backend
       meta-tags: ${{ needs.release-metadata.outputs.tags }}
       meta-labels: |
         org.opencontainers.image.source=https://github.com/${{ github.repository }}
@@ -300,7 +300,7 @@ jobs:
       cache-scope: frontend-image
       sbom: ${{ needs.release-metadata.outputs.publish == 'true' }}
       build-args: VITE_APP_BUILD_LABEL=${{ needs.release-metadata.outputs.build-label }}
-      meta-images: ghcr.io/stavarengo/excalitotum-frontend
+      meta-images: ghcr.io/stavarengo/excalisumma-frontend
       meta-tags: ${{ needs.release-metadata.outputs.tags }}
       meta-labels: |
         org.opencontainers.image.source=https://github.com/${{ github.repository }}
@@ -338,7 +338,7 @@ jobs:
         shell: bash
         run: |
           for component in backend frontend; do
-            image="${IMAGE_NAMESPACE}/excalitotum-${component}:${{ needs.release-metadata.outputs.image-tag }}"
+            image="${IMAGE_NAMESPACE}/excalisumma-${component}:${{ needs.release-metadata.outputs.image-tag }}"
             docker buildx imagetools inspect "$image" --raw | jq -e '
               [.manifests[].platform | select(.os == "linux") | .architecture] as $architectures
               | ($architectures | index("amd64") != null) and ($architectures | index("arm64") != null)
@@ -351,7 +351,7 @@ jobs:
 
       - name: Verify frontend ports and non-root execution
         if: needs.release-metadata.outputs.publish == 'true'
-        run: sh scripts/test-frontend-container.sh "${IMAGE_NAMESPACE}/excalitotum-frontend:${{ needs.release-metadata.outputs.image-tag }}"
+        run: sh scripts/test-frontend-container.sh "${IMAGE_NAMESPACE}/excalisumma-frontend:${{ needs.release-metadata.outputs.image-tag }}"
 
       - name: Promote verified image pair
         if: needs.release-metadata.outputs.publish == 'true'
@@ -361,7 +361,7 @@ jobs:
         run: |
           trap 'docker logout ghcr.io >/dev/null 2>&1' EXIT
           for component in backend frontend; do
-            image="${IMAGE_NAMESPACE}/excalitotum-${component}"
+            image="${IMAGE_NAMESPACE}/excalisumma-${component}"
             docker buildx imagetools create \
               --tag "${image}:${FLOATING_TAG}" \
               "${image}:${{ needs.release-metadata.outputs.image-tag }}"
@@ -403,7 +403,7 @@ jobs:
             --target "$GITHUB_SHA" \
             "${notes_args[@]}" \
             --latest \
-            --title "ExcaliTotum ${VERSION}"
+            --title "ExcaliSumma ${VERSION}"
 
   github-dev-release:
     name: GitHub Dev Release
@@ -427,9 +427,9 @@ jobs:
           gh release create "$tag" \
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
-            --notes "Development container images: ${IMAGE_NAMESPACE}/excalitotum-backend:${IMAGE_TAG} and ${IMAGE_NAMESPACE}/excalitotum-frontend:${IMAGE_TAG}." \
+            --notes "Development container images: ${IMAGE_NAMESPACE}/excalisumma-backend:${IMAGE_TAG} and ${IMAGE_NAMESPACE}/excalisumma-frontend:${IMAGE_TAG}." \
             --prerelease \
-            --title "ExcaliTotum ${IMAGE_TAG}"
+            --title "ExcaliSumma ${IMAGE_TAG}"
 
   sync-dev:
     name: Sync Main Back To Dev

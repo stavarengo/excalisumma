@@ -156,7 +156,7 @@ export const importLegacyZip = async (
       success: 0,
       failed: 1,
       errors: [
-        `${file.name}: This looks like an ExcaliTotum backup (.excalidash). Use "Import Backup" instead of Legacy Import.`,
+        `${file.name}: This looks like an ExcaliSumma backup (.excalidash). Use "Import Backup" instead of Legacy Import.`,
       ],
     };
   }

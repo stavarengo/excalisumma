@@ -1,14 +1,14 @@
 ---
-title: Self-hosted Excalidraw with Collaboration | ExcaliTotum
+title: Self-hosted Excalidraw with Collaboration | ExcaliSumma
 titleTemplate: false
-description: Self-host Excalidraw with saved drawings, collections, real-time collaboration, and version history. Deploy ExcaliTotum with Docker Compose.
+description: Self-host Excalidraw with saved drawings, collections, real-time collaboration, and version history. Deploy ExcaliSumma with Docker Compose.
 layout: home
 pageClass: canvas-home
 markdownStyles: true
 footer: false
 
 canvasHero:
-  name: "ExcaliTotum"
+  name: "ExcaliSumma"
   headline: Self-hosted Excalidraw, organized.
   tagline: Saved drawings, collections, real-time collaboration, and version history. Run your own workspace with Docker Compose.
   actions:
@@ -17,7 +17,7 @@ canvasHero:
       link: /deploy/docker
     - theme: alt
       text: View on GitHub
-      link: https://github.com/stavarengo/excalitotum
+      link: https://github.com/stavarengo/excalisumma
 
 canvasFeatures:
   - icon: "01"
@@ -37,13 +37,13 @@ canvasFeatures:
     details: Use local accounts, OpenID Connect, or both.
   - icon: "06"
     title: Portable data
-    details: Import, export, and back up your ExcaliTotum library.
+    details: Import, export, and back up your ExcaliSumma library.
 
 canvasImages:
   - label: All Drawings
     light: /images/workspace-light.png
     dark: /images/workspace.png
-    alt: ExcaliTotum dashboard with drawing previews, collections, and search
+    alt: ExcaliSumma dashboard with drawing previews, collections, and search
   - label: Collaboration
     light: /images/collaboration-light.png
     dark: /images/collaboration-dark.png
@@ -52,7 +52,7 @@ canvasImages:
 
 ## Your drawings, on your server
 
-ExcaliTotum is an open-source workspace built around the Excalidraw editor. Keep your drawings in a persistent database, organize them into collections, and work together in real time. It is an independent project, not an official Excalidraw product.
+ExcaliSumma is an open-source workspace built around the Excalidraw editor. Keep your drawings in a persistent database, organize them into collections, and work together in real time. It is an independent project, not an official Excalidraw product.
 
 ### Self-host Excalidraw with Docker Compose
 
@@ -68,13 +68,13 @@ Drawings are stored on your server so you can return to them from another device
 
 ## Questions about self-hosting Excalidraw
 
-### What does ExcaliTotum add to Excalidraw?
+### What does ExcaliSumma add to Excalidraw?
 
-ExcaliTotum embeds the Excalidraw editor and adds a dashboard, persistent drawing storage, collections, sharing permissions, collaboration, version history, and account management.
+ExcaliSumma embeds the Excalidraw editor and adds a dashboard, persistent drawing storage, collections, sharing permissions, collaboration, version history, and account management.
 
 ### Can I collaborate on my own server?
 
-Yes. The ExcaliTotum backend handles real-time collaboration. Your reverse proxy must forward WebSocket connections; the [Docker guide](/deploy/docker#configure-https) explains the setup.
+Yes. The ExcaliSumma backend handles real-time collaboration. Your reverse proxy must forward WebSocket connections; the [Docker guide](/deploy/docker#configure-https) explains the setup.
 
 ### Does restarting Docker erase my drawings?
 
@@ -82,4 +82,4 @@ The default Compose stack stores data in the `backend-data` volume, which surviv
 
 ### Can I use my existing Excalidraw files?
 
-Yes. ExcaliTotum supports import and export of drawings in `.excalidraw` format, as well as library export and import for moving your workspace.
+Yes. ExcaliSumma supports import and export of drawings in `.excalidraw` format, as well as library export and import for moving your workspace.

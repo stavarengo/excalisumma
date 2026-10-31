@@ -2,9 +2,9 @@ import { defineConfig } from "vitepress";
 import { docsReviewPlugin } from "./review/plugin.mjs";
 
 export default defineConfig({
-  title: "ExcaliTotum",
+  title: "ExcaliSumma",
   description:
-    "Self-host Excalidraw with saved drawings, collections, real-time collaboration, and version history. Deploy ExcaliTotum with Docker Compose.",
+    "Self-host Excalidraw with saved drawings, collections, real-time collaboration, and version history. Deploy ExcaliSumma with Docker Compose.",
   sitemap: { hostname: "https://excalidash.future-domain.pending" },
   transformHead({ pageData }) {
     if (pageData.relativePath === "404.md") return [];
@@ -16,7 +16,7 @@ export default defineConfig({
     return [
       ["link", { rel: "canonical", href: url }],
       ["meta", { property: "og:type", content: "website" }],
-      ["meta", { property: "og:site_name", content: "ExcaliTotum" }],
+      ["meta", { property: "og:site_name", content: "ExcaliSumma" }],
       ["meta", { property: "og:title", content: title }],
       ["meta", { property: "og:description", content: pageData.description }],
       ["meta", { property: "og:url", content: url }],
@@ -45,7 +45,7 @@ export default defineConfig({
   ],
   themeConfig: {
     siteTitle: false,
-    logo: { src: "/images/logo.png", alt: "ExcaliTotum" },
+    logo: { src: "/images/logo.png", alt: "ExcaliSumma" },
     nav: [
       { text: "Guide", link: "/guide/quick-start" },
       { text: "Deploy", link: "/deploy/docker" },
@@ -83,11 +83,11 @@ export default defineConfig({
     search: { provider: "local" },
     outline: { level: [2, 3], label: "On this page" },
     editLink: {
-      pattern: "https://github.com/stavarengo/excalitotum/edit/dev/docs/:path",
+      pattern: "https://github.com/stavarengo/excalisumma/edit/dev/docs/:path",
       text: "Edit this page on GitHub",
     },
     socialLinks: [
-      { icon: "github", link: "https://github.com/stavarengo/excalitotum" },
+      { icon: "github", link: "https://github.com/stavarengo/excalisumma" },
     ],
     footer: {
       message: "Self-hosted, open source, and built around Excalidraw.",

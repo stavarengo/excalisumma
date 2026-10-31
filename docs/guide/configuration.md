@@ -1,11 +1,11 @@
 ---
 title: Configure Your Self-hosted Excalidraw Workspace
-description: Configure ExcaliTotum for your server, with environment settings for storage, authentication, and deployment.
+description: Configure ExcaliSumma for your server, with environment settings for storage, authentication, and deployment.
 ---
 
 # Configuration
 
-Configure ExcaliTotum with environment variables.
+Configure ExcaliSumma with environment variables.
 
 ## Local development
 

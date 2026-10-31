@@ -197,7 +197,7 @@ export const Profile: React.FC = () => {
                     Password reset required
                   </p>
                   <p className="text-xs text-amber-800 dark:text-amber-200/80 font-medium mt-0.5">
-                    Change your password below before using ExcaliTotum.
+                    Change your password below before using ExcaliSumma.
                   </p>
                 </div>
               )}

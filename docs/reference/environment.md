@@ -1,6 +1,6 @@
 ---
-title: ExcaliTotum Environment Variables
-description: Reference ExcaliTotum environment variables for databases, authentication, OpenID Connect, backups, and server configuration.
+title: ExcaliSumma Environment Variables
+description: Reference ExcaliSumma environment variables for databases, authentication, OpenID Connect, backups, and server configuration.
 ---
 
 # Environment reference

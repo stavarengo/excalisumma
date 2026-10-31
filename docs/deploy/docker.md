@@ -1,6 +1,6 @@
 ---
 title: How to Self-host Excalidraw with Docker Compose
-description: Deploy ExcaliTotum for self-hosted Excalidraw with saved drawings and collaboration. Configure Docker, HTTPS, persistent storage, backups, and upgrades.
+description: Deploy ExcaliSumma for self-hosted Excalidraw with saved drawings and collaboration. Configure Docker, HTTPS, persistent storage, backups, and upgrades.
 ---
 
 <script setup>
@@ -9,19 +9,19 @@ import { setupSlides } from "../.vitepress/theme/screenshot-flows";
 
 # How to self-host Excalidraw with Docker Compose
 
-ExcaliTotum gives the Excalidraw editor a self-hosted workspace with saved drawings, collections, real-time collaboration, and version history. This guide deploys the ExcaliTotum frontend and backend with a persistent SQLite database. ExcaliTotum is an independent project built around Excalidraw.
+ExcaliSumma gives the Excalidraw editor a self-hosted workspace with saved drawings, collections, real-time collaboration, and version history. This guide deploys the ExcaliSumma frontend and backend with a persistent SQLite database. ExcaliSumma is an independent project built around Excalidraw.
 
 ## Before you start
 
 Install Docker Engine or Docker Desktop and Docker Compose v2. You also need Git and an available host port `6767`. For access over the internet, prepare a domain and an HTTPS reverse proxy.
 
-## Install ExcaliTotum
+## Install ExcaliSumma
 
 Clone the repository and start the production stack:
 
 ```bash
-git clone https://github.com/stavarengo/excalitotum.git
-cd excalitotum
+git clone https://github.com/stavarengo/excalisumma.git
+cd excalisumma
 docker compose -f docker-compose.prod.yml up -d
 ```
 
