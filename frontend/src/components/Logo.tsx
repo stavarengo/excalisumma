@@ -8,136 +8,34 @@ export const Logo: React.FC<{ className?: string }> = ({ className }) => {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <defs>
-        <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="8"></feGaussianBlur>
-          <feOffset dx="4" dy="8" result="offsetblur"></feOffset>
-          <feComponentTransfer>
-            <feFuncA type="linear" slope="0.2"></feFuncA>
-          </feComponentTransfer>
-          <feMerge>
-            <feMergeNode></feMergeNode>
-            <feMergeNode in="SourceGraphic"></feMergeNode>
-          </feMerge>
-        </filter>
-      </defs>
-      <g
-        strokeWidth="32"
+      <path
+        className="fill-[#1e293b] dark:fill-[#525252]"
+        d="M146 62 C240.12 62, 334.24 62, 402 62 C450 62, 474 86, 474 134 C474 217.67, 474 301.34, 474 390 C474 438, 450 462, 402 462 C333.2 462, 264.39 462, 146 462 C98 462, 74 438, 74 390 C74 303.12, 74 216.24, 74 134 C74 86, 98 62, 146 62 C146 62, 146 62, 146 62"
+      />
+      <path
+        className="fill-[#ffffff] dark:fill-[#262626]"
+        d="M128.71 43.6 C207 49.9, 280 48.38, 386.4 42.87 C432.58 43.95, 454.21 66.31, 458.88 114.12 C455.57 207.03, 456.43 294.83, 452.61 371.15 C452.18 419.83, 431.2 444.14, 381.59 448.05 C319.03 447.59, 250.34 445.76, 130.23 446.23 C81.41 439.72, 58.05 422.52, 60.15 368.4 C51.28 278.53, 57.14 185.92, 57.3 115.81 C53.2 65.11, 77.59 47.75, 132.13 41.24 C128 44, 128 44, 128 44"
+      />
+      <path
+        className="stroke-[#1e293b] dark:stroke-[#e5e5e5]"
+        d="M127.77 45.47 C183.69 41.49, 237.72 45.81, 385.91 44.88 M127.89 43.15 C195.45 46.22, 264.36 46.16, 384.14 43.98 M384 44 C431.34 43.82, 456.01 69.55, 454.99 117.02 M384.48 42.05 C430.43 42.5, 455.62 66.82, 454.98 114.82 M457.71 115.12 C460.28 215.05, 460.21 313.07, 454.1 371.18 M455.13 116.87 C452.88 198.55, 452.91 281.16, 457.12 372.86 M456 372 C458.32 419.69, 430.54 444.61, 382.5 441.23 M454.85 373.5 C457.8 419.23, 434.05 444.91, 384.63 446.73 M385.58 442.23 C294.62 442.11, 205.97 442.04, 128.89 444.96 M383.32 444.05 C310.83 442.83, 239.2 443.36, 128.38 443.99 M128 444 C78.95 443.19, 53.73 419.13, 53.34 371.15 M129.12 441.76 C81.01 446.36, 58.65 419.76, 56.31 371.34 M57.88 372.75 C59.19 293.93, 60.07 214.89, 55.4 117.74 M55.54 371.67 C57.48 311.74, 57.74 250.53, 56.7 116.1 M56 116 C54 67.99, 80.68 43.15, 128.73 45 M53.39 115.73 C58.33 68.1, 79.58 43.1, 126.52 46.54 M128 44 C128 44, 128 44, 128 44 M128 44 C128 44, 128 44, 128 44"
+        fill="none"
+        strokeWidth={9}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="stroke-[#2D3748] dark:stroke-[#E2E8F0]"
-      >
-        <rect
-          x="40"
-          y="40"
-          width="200"
-          height="200"
-          rx="32"
-          strokeWidth="24"
-          className="fill-[#E6FFFA] dark:fill-[#134E4A]"
-        ></rect>
-        <path
-          d="M100 180 V 140"
-          className="stroke-[#38B2AC] dark:stroke-[#2DD4BF]"
-        ></path>
-        <path
-          d="M140 180 V 100"
-          className="stroke-[#38B2AC] dark:stroke-[#2DD4BF]"
-        ></path>
-        <path
-          d="M180 180 V 160"
-          className="stroke-[#38B2AC] dark:stroke-[#2DD4BF]"
-        ></path>
-        <rect
-          x="272"
-          y="40"
-          width="200"
-          height="200"
-          rx="32"
-          strokeWidth="24"
-          className="fill-[#FFFAF0] dark:fill-[#7C2D12]"
-        ></rect>
-        <circle
-          cx="372"
-          cy="140"
-          r="50"
-          strokeWidth="24"
-          className="stroke-[#DD6B20] dark:stroke-[#FB923C]"
-        ></circle>
-        <path
-          d="M372 140 L 405 105"
-          strokeWidth="12"
-          className="stroke-[#DD6B20] dark:stroke-[#FB923C]"
-        ></path>
-        <rect
-          x="40"
-          y="272"
-          width="200"
-          height="200"
-          rx="32"
-          strokeWidth="24"
-          className="fill-[#FAF5FF] dark:fill-[#581C87]"
-        ></rect>
-        <line
-          x1="80"
-          y1="332"
-          x2="200"
-          y2="332"
-          className="stroke-[#805AD5] dark:stroke-[#A78BFA]"
-        ></line>
-        <line
-          x1="80"
-          y1="372"
-          x2="160"
-          y2="372"
-          className="stroke-[#805AD5] dark:stroke-[#A78BFA]"
-        ></line>
-        <line
-          x1="80"
-          y1="412"
-          x2="180"
-          y2="412"
-          className="stroke-[#805AD5] dark:stroke-[#A78BFA]"
-        ></line>
-        <rect
-          x="272"
-          y="272"
-          width="200"
-          height="200"
-          rx="32"
-          fill="none"
-          strokeWidth="24"
-          strokeDasharray="30 30"
-          className="stroke-[#E53E3E] dark:stroke-[#F87171]"
-        ></rect>
-      </g>
-      <g transform="translate(380, 380) rotate(-45)" filter="url(#softShadow)">
-        <path
-          d="M-25 -100 L-25 80 L0 120 L25 80 L25 -100 Z"
-          strokeWidth="24"
-          strokeLinejoin="round"
-          className="fill-[#F6E05E] dark:fill-[#FACC15] stroke-[#2D3748] dark:stroke-[#E2E8F0]"
-        ></path>
-        <path
-          d="M-25 -100 L-25 -130 C-25 -150, 25 -150, 25 -130 L25 -100 Z"
-          strokeWidth="24"
-          strokeLinejoin="round"
-          className="fill-[#F687B3] dark:fill-[#F472B6] stroke-[#2D3748] dark:stroke-[#E2E8F0]"
-        ></path>
-        <rect
-          x="-25"
-          y="-100"
-          width="50"
-          height="30"
-          strokeWidth="24"
-          strokeLinejoin="round"
-          className="fill-[#CBD5E0] dark:fill-[#475569] stroke-[#2D3748] dark:stroke-[#E2E8F0]"
-        ></rect>
-        <path
-          d="M-8 108 L0 120 L8 108 Z"
-          className="fill-[#2D3748] dark:fill-[#E2E8F0]"
-        ></path>
-      </g>
+      />
+      <path
+        className="fill-[#6366f1] dark:fill-[#818cf8]"
+        d="M128.55 89 L385.56 89.03 L382.89 144.52 L234.02 141.59 L315.62 240.2 L231.92 341.36 L382.52 341.13 L385.27 396.57 L128.27 393.45 L125.76 352.51 L237.74 242.04 L126.57 128.84"
+      />
+      <path
+        className="stroke-[#1e293b] dark:stroke-[#e5e5e5]"
+        d="M127.57 89.83 C219.64 86.86, 315.94 86.46, 382.64 88.94 M127.02 88.11 C178.6 90.4, 231.58 91.46, 383.44 87.84 M385.17 86.17 C383.62 100.65, 381.93 118.06, 385.82 140.12 M384.87 88.81 C384.8 101.45, 384.65 114.26, 383.86 141.05 M384.71 141.51 C349.29 141.68, 314.46 142.54, 230.28 144.16 M384.91 143.19 C331.66 142.18, 280.73 143.04, 231.88 142.99 M231.15 142.23 C263.38 178.93, 294.64 218.08, 316.69 241.09 M232.75 140.82 C258.01 174.03, 286.42 206.95, 314.71 243.2 M317.87 239.61 C297.28 265.61, 273.75 290.42, 231.42 341.4 M314.73 242.23 C287.17 276.16, 258.34 312.13, 231.54 342.53 M229.5 343.67 C283.84 341.83, 333.98 340.52, 384.45 343.7 M232.86 342.21 C278.98 340.29, 325.21 340.4, 383.75 342.71 M381.78 343.57 C385.92 361.2, 384.27 383.54, 383.85 398.28 M383.65 341.42 C383.27 355.22, 383.31 369.43, 383.93 394.75 M385.4 394.58 C317.39 395.33, 256.45 394.82, 127.45 395.72 M383.36 396.89 C299.05 395.96, 212.66 395.45, 127.32 396.02 M128.31 396.79 C127.73 379.63, 129.55 365.79, 126.7 352.97 M128.36 395.19 C127.12 380.32, 129.21 362.04, 127.25 354.03 M129.72 352.03 C162.57 317.53, 199.18 281.08, 239.14 239.9 M128.29 353.12 C170.75 308.6, 215.66 266.13, 239.1 241.1 M240.44 241.06 C202.3 200.82, 162.13 162.99, 130.17 130.22 M238.7 242.51 C216.66 219.88, 194.35 196.74, 128.77 131.11 M125.87 129.91 C128.9 117.97, 127.04 104.89, 129.42 89.43 M127.58 129.08 C128.79 114.06, 127.18 99.46, 129.13 88.62"
+        fill="none"
+        strokeWidth={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 };

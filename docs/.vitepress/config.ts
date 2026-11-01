@@ -45,7 +45,11 @@ export default defineConfig({
   ],
   themeConfig: {
     siteTitle: false,
-    logo: { src: "/images/logo.png", alt: "ExcaliSumma" },
+    logo: {
+      light: "/images/logo-light.svg",
+      dark: "/images/logo-dark.svg",
+      alt: "ExcaliSumma",
+    },
     nav: [
       { text: "Guide", link: "/guide/quick-start" },
       { text: "Deploy", link: "/deploy/docker" },
